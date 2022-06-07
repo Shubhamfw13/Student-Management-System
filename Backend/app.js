@@ -1,6 +1,15 @@
 const express = require("express");
 const app = express();
 const connect = require("./src/config/db");
+const studentauthController = require("./src/controllers/studentauthController")
+const facultyauthController = require("./src/controllers/facultyauthcontroller")
+const getAllUsersController = require("./src/controllers/user")
+
+app.use(express.json())
+app.use("/studentauth",studentauthController)
+app.use("/facultyauth",facultyauthController)
+app.use("/user",getAllUsersController)
+
 
 const port = process.env.PORT || 8000;
 
