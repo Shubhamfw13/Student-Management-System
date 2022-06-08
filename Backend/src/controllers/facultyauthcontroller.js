@@ -15,6 +15,7 @@ router.post("/register", async (req, res) => {
       username: req.body.username,
       email: req.body.email,
       subject: req.body.subject,
+      role: req.body.role, 
       student_id: req.body.student_id,
       password: hashed.AES.encrypt(
         req.body.password,
@@ -52,9 +53,9 @@ router.post("/login", async (req, res) => {
         process.env.JWT_SECRET,
         { expiresIn: "2d" }
       );
-      return res.status(200).send({ user,userr, token });
+      return res.status(200).send({ user, token });
     } catch (error) {
-      return res.status(500).send(err.message);
+      return res.status(500).send(error.message);
     }
   });
   
