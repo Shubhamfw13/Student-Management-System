@@ -1,5 +1,6 @@
 # Student-Management-System
 This is a Student Management System assignment
+
  login as faculty = try to login as faculty dummy account credentials (email = t@1.com password = 12345)
  login as student = try to login as student dummy account credentials (email = s@1.com password = 12345)
 
