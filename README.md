@@ -8,6 +8,6 @@ This is a Student Management System assignment
  so leave it empty or give any one mongoose id of student Note= Only one 
  
  NOTE= Pie chart is not working on deployment 
- Run (npm i) powershell
+ Run (npm i) in powershell
  npm start for frontend
  nodemon app.js for backend
