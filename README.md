@@ -7,3 +7,7 @@ This is a Student Management System assignment
  if you want to create a faculty or student you have to login as a faculty then create both faculty and student in faculty the last field is in production
  so leave it empty or give any one mongoose id of student Note= Only one 
  
+ NOTE= Pie chart is not working on deployment 
+ Run (npm i) powershell
+ npm start for frontend
+ nodemon app.js for backend
