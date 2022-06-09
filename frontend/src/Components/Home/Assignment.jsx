@@ -7,8 +7,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Button } from "@mui/material";
 import { useDispatch, useSelector } from 'react-redux';
 import { GetAssignmentData } from '../../Redux/Events/action';
+import axios from "axios"
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,13 +35,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function Assignment() {
   const {Assignment} = useSelector((state)=>state.event)
+  const {student} = useSelector((state)=>state.auth)
   const dispatch = useDispatch()
 
   React.useEffect(()=>{
    dispatch(GetAssignmentData() )
   },[])
 
-  console.log(Assignment)
+  const handleMarkComplete =  (assignment_id)=>{
+     const res =  axios.patch("https://studentmanagesystemm.herokuapp.com/assignment/mark-complete",{
+       assignment_id,
+       student_id: student._id
+     }).then(()=> dispatch(GetAssignmentData() ))
+  }
   return (
     <TableContainer  component={Paper}>
       <Table sx={{ minWidth: 700 }}  aria-label="customized table">
@@ -63,7 +71,7 @@ export default function Assignment() {
               <StyledTableCell align="center">{row.start}</StyledTableCell>
               <StyledTableCell align="center">{row.end}</StyledTableCell>
               <StyledTableCell align="center">{row.assignmentdetails}</StyledTableCell>
-              <StyledTableCell align="center">{row.assignmentstatus}</StyledTableCell>
+              <StyledTableCell align="center">{row.student_id.find((s)=>s._id == student._id) ?  "Completed" : <Button onClick={()=>handleMarkComplete(row._id)}>Mark Complete</Button>}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

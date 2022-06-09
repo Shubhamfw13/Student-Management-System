@@ -41,7 +41,7 @@ const GetEventData = () => (dispatch) => {
   dispatch(getEventDataReq("Getting Event Data"));
   try {
     axios
-      .get("http://localhost:8001/event")
+      .get("https://studentmanagesystemm.herokuapp.com/event")
       .then((res) => {
         dispatch(getEventDataSuccess(res.data));
       })
@@ -59,7 +59,7 @@ const GetAssignmentData = () => (dispatch) => {
   dispatch(getAssignmentDataReq("Getting Assignment Data"));
   try {
     axios
-      .get("http://localhost:8001/assignment")
+      .get("https://studentmanagesystemm.herokuapp.com/assignment")
       .then((res) => {
         dispatch(getAssignmentDataSuccess(res.data));
       })

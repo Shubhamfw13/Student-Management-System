@@ -1,6 +1,8 @@
 
 import React from 'react'
 import {Routes,Route} from "react-router-dom"
+import { CreateFaculty } from '../Components/Admin/CreateFaculty'
+import { CreateStudent } from '../Components/Admin/CreateStudent'
 import Faculty from '../Components/Admin/Faculty'
 import Assignment from '../Components/Home/Assignment'
 
@@ -18,6 +20,8 @@ const AllRoutes = () => {
         <Route path='/faculty' element={<Faculty/>} />
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/assignment' element={<Assignment/>} />
+        <Route path='/createfaculty' element={<CreateFaculty/>} />
+        <Route path='createstudent' element={<CreateStudent/>} />
     </Routes>
   )
 }

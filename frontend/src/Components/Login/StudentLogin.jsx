@@ -29,6 +29,7 @@ export default function StudentLogin() {
 
 
   React.useEffect(()=>{
+    console.log(studentaccessToken, "from useffect")
       if(studentaccessToken){
         navigate("/")
       }
