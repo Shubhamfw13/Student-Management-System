@@ -12,7 +12,7 @@ const eventSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    versionKey: false,
+    versionKey: false, 
   }
 );
 module.exports = mongoose.model("Event", eventSchema);

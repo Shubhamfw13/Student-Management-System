@@ -7,11 +7,11 @@ const facultySchema = new mongoose.Schema(
     subject: { type: String },
     role: { type: String, default: "Faculty", required: true },
     password: { type: String, required: true },
-    student_id: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }],
+    student_id: [{ type: mongoose.Schema.Types.ObjectId, default:[], ref: "Student" }],
   },
   {
     timestamps: true,
-    versionKey: false,
+    versionKey: false,  
   }
 );
-module.exports = mongoose.model("Faculty", facultySchema);
+module.exports = mongoose.model("Faculty", facultySchema); 

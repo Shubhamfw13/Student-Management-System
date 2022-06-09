@@ -6,7 +6,7 @@ const assignmentSchema = new mongoose.Schema(
     assignmentdetails: { type: String, required: true },
     start: { type: String, required: true }, 
     end: { type: String, required: true },
-    assignmentstatus:{ type: String },
+    assignmentstatus:{ type: String,default:"Pending",required:true },
     student_id: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }],
   },
   {

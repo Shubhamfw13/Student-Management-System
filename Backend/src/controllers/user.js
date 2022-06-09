@@ -44,6 +44,39 @@ router.patch("/:id", async (req, res) => {
       res.status(500).send({ Error: err.message });
     }
   });
+
+  router.get("/search",async (req,res)=>{
+    const query = req.query.query
+    const type = req.query.type
+    let filter = {username:query}
+    switch (type) {
+      case "username":
+        filter ={username:query}
+        break;
+      case "email":
+        filter = {email:query}
+        break;
+      case "roll":
+        filter = {rollnumber: Number(query) || -1}
+        break
+      case "term":
+        filter = {term: query}
+        break
+      default:
+        filter = {username:query}
+        break;
+    }
+    try {
+      const users = await Students.find({
+        $or: [filter]
+      }).lean().exec()
+      console.log(users)
+    return res.status(200).send({users})
+    }catch(err) {
+      console.log(err)
+      return res.status(500).send(err)
+    }
+  })
   
 
   module.exports = router

@@ -19,18 +19,18 @@ router.post("/register", async (req, res) => {
       student_id: req.body.student_id,
       password: hashed.AES.encrypt(
         req.body.password,
-        process.env.SECRET.toString()
+        process.env.SECRET.toString() 
       ),
     });   
   }
   try {
     user.save();
     res.status(201).send(user);
-    console.log("user created"); 
+    console.log("user created",user); 
   } catch (error) {
-    res.status(500).send(error.message);
-  }
-});
+    res.status(500).send(error.message);   
+  } 
+});  
 
 router.post("/login", async (req, res) => {
     try {
@@ -58,6 +58,9 @@ router.post("/login", async (req, res) => {
       return res.status(500).send(error.message);
     }
   });
+
+
+  
   
 
 module.exports = router;

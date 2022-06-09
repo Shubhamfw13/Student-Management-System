@@ -33,6 +33,28 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+router.post("/register", async (req,res)=>{
+  const event_id = req.body.event_id
+  const student_id = req.body.student_id
+  if(!event_id || !student_id){
+    return res.status(400).send("Missing required parameters event id or student id")
+  }
+
+  try {
+    const event = await Event.findOneAndUpdate({
+      _id: event_id
+    },{
+      $addToSet: {
+        student_id: student_id
+      }
+    }).lean().exec()
+    return res.status(200).send("successfully updated")
+  } catch (error) {
+    
+    return res.status(500).send(error);
+  }
+})
+
 router.get("/:id", async (req, res) => {
   try {
     const event = await Event.findById(req.params.id)

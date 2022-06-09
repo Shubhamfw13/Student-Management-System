@@ -19,6 +19,23 @@ router.post("", async (req, res) => {
 });
 // router.get("", crudController(Booking).getAll)
 
+router.patch("/mark-complete", async (req,res)=>{
+  const assignment_id = req.body.assignment_id
+  const student_id = req.body.student_id
+  try {
+
+     const assignment = await Assignment.findOneAndUpdate({_id:assignment_id},{
+       $addToSet: {
+         student_id: student_id
+       }
+     }).lean().exec()
+     return res.status(200).send("successfully updated")
+  } catch (err) {
+   console.log(err)
+    return res.status(500).send({ error: err.message });
+  }
+})
+
 router.patch("/:id", async (req, res) => {
   try {
     const assignment = await Assignment.findByIdAndUpdate(
@@ -73,5 +90,7 @@ router.get("", async (req, res) => {
     return res.status(500).send(error);
   }
 });
+
+
 
 module.exports = router;
