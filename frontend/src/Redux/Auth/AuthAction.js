@@ -66,7 +66,7 @@ const StudentSignup =
   async (dispatch) => {
     dispatch(studentSignupRequest({ msg: "loading" }));
     await axios
-      .post("https://studentmanagesystemm.herokuapp.com/studentauth/register", {
+      .post("http://localhost:8001/studentauth/register", {
         username,
         email,
         password,

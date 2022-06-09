@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
-import { FacultySignup } from "../../Redux/Auth/AuthAction";
+import { StudentSignup } from "../../Redux/Auth/AuthAction";
 export const CreateStudent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -11,8 +11,11 @@ export const CreateStudent = () => {
     username: "",
     email: "",
     password: "",
-    subject: "",
-    student_id: [],
+    rollnumber: "",
+    role: "",
+    term: "",
+    contact: "",
+    currentyear: "",
   });
 
   const handleChange = (e) => {
@@ -22,16 +25,19 @@ export const CreateStudent = () => {
   // console.log(inputs)
   const handleSubmit = () => {
     dispatch(
-      FacultySignup(
+      StudentSignup(
         inputs.username,
         inputs.email,
         inputs.password,
-        inputs.subject,
-        inputs.student_id
+        inputs.rollnumber,
+        inputs.role,
+        inputs.term,
+        inputs.contact,
+        inputs.currentyear
       )
     );
   };
-  console.log(inputs)
+  console.log(inputs);
 
   return (
     <>
@@ -65,17 +71,41 @@ export const CreateStudent = () => {
           <TextField
             type="text"
             onChange={handleChange}
-            name="subject"
-            placeholder="subject"
-            value={inputs.subject}
+            name="rollnumber"
+            placeholder="rollnumber"
+            value={inputs.rollnumber}
           />{" "}
           <br /> <br />
           <TextField
             type="text"
             onChange={handleChange}
-            name="student_id"
-            placeholder="student_id"
-            value={inputs.student_id}
+            name="role"
+            placeholder="role"
+            value={inputs.role}
+          />{" "}
+          <br /> <br />
+          <TextField
+            type="text"
+            onChange={handleChange}
+            name="term"
+            placeholder="term"
+            value={inputs.term}
+          />{" "}
+          <br /> <br />
+          <TextField
+            type="text"
+            onChange={handleChange}
+            name="contact"
+            placeholder="contact"
+            value={inputs.contact}
+          />{" "}
+          <br /> <br />
+          <TextField
+            type="text"
+            onChange={handleChange}
+            name="currentyear"
+            placeholder="currentyear"
+            value={inputs.currentyear}
           />{" "}
           <br /> <br />
           <Button onClick={handleSubmit} variant="contained" color="success">
